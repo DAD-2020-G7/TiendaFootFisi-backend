@@ -28,6 +28,7 @@ public class ProductoServicioImpl implements ProductoServicio{
 
 	@Override
 	public void registrarProducto(ProductoModel oModel) {
+		oModel.setIdProducto((int)(productoRepository.count()) + 1);
 		productoRepository.save(productoTransform.transformME(oModel));
 	}
 
