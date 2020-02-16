@@ -49,7 +49,7 @@ public class SegUsuario implements java.io.Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumns({
 			@JoinColumn(name = "id_tipo_documento", referencedColumnName = "id_tipo_documento", nullable = false),
-			@JoinColumn(name = "vNumeroDocumento", referencedColumnName = "\"vNumeroDocumento\"", nullable = false) })
+			@JoinColumn(name = "\"vNumeroDocumento\"", referencedColumnName = "\"vNumeroDocumento\"", nullable = false) })
 	public RegPersona getRegPersona() {
 		return this.regPersona;
 	}
