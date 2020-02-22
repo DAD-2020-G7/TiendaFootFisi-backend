@@ -68,8 +68,8 @@ public class RegPedido implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumns({
-			@JoinColumn(name = "vTipoDocumentoCliente", referencedColumnName = "id_tipo_documento", nullable = false),
-			@JoinColumn(name = "vNumeroDocumentoCliente", referencedColumnName = "\"vNumeroDocumento\"", nullable = false)
+			@JoinColumn(name = "\"vTipoDocumentoCliente\"", referencedColumnName = "id_tipo_documento", nullable = false),
+			@JoinColumn(name = "\"vNumeroDocumentoCliente\"", referencedColumnName = "\"vNumeroDocumento\"", nullable = false)
 			})
 	public RegCliente getRegCliente() {
 		return this.regCliente;

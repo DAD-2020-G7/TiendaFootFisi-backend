@@ -20,6 +20,7 @@ public class PedidoTransform implements Transform<PedidoModel, RegPedido>{
 			
 			oEntityPedido.setNprecioTotal(BigDecimal.valueOf(oModel.getnPrecioTotal()));
 			oEntityPedido.setDfechaCompra(oModel.getdFechaCompra());
+			oEntityPedido.setDfechaPago(oModel.getdFechaPago());
 			oEntityPedido.setVestado(oModel.getsEstado());
 			
 			RegCliente oEntityCliente = new RegCliente();

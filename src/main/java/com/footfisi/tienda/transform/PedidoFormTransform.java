@@ -19,7 +19,7 @@ public class PedidoFormTransform implements TransformForm<PedidoModel, PedidoFor
 	public PedidoModel transformFM(PedidoForm oForm) {
 		if(oForm != null) {
 			PedidoModel oModelPedido = new PedidoModel();
-			oModelPedido.setsIdTipoDocumento(String.valueOf(oForm.getTipoDoc()));
+			oModelPedido.setsIdTipoDocumento(oForm.getTipoDoc());
 			oModelPedido.setsNumeroDocumento(oForm.getNumeroDoc());
 			
 			oModelPedido.setnPrecioTotal(oForm.getTotal());

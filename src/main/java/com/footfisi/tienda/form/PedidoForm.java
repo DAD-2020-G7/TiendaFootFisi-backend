@@ -9,7 +9,7 @@ public class PedidoForm {
 	private int tipoComp;
 	private String codEstablecimiento;
 	private String numeroSerie;
-	private int tipoDoc;
+	private String tipoDoc;
 	private String numeroDoc;
 	private String nombrePer;
 	private String direccionPer;
@@ -44,11 +44,11 @@ public class PedidoForm {
 		this.numeroSerie = numeroSerie;
 	}
 
-	public int getTipoDoc() {
+	public String getTipoDoc() {
 		return tipoDoc;
 	}
 
-	public void setTipoDoc(int tipoDoc) {
+	public void setTipoDoc(String tipoDoc) {
 		this.tipoDoc = tipoDoc;
 	}
 
