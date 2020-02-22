@@ -7,5 +7,5 @@ import com.footfisi.tienda.entity.SegUsuario;
 
 @Repository("usuarioRepository")
 public interface RepositoryUsuario  extends JpaRepository<SegUsuario, String>{
-
+	public SegUsuario findByIdUsuario(String idUsuario);
 }

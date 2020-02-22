@@ -1,5 +1,8 @@
 package com.footfisi.tienda.service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,18 @@ public class ClienteServicioImpl implements ClienteServicio{
 	@Autowired
 	@Qualifier("clienteTransform")
 	private ClienteTransform clienteTransform;
+	
+	@Override
+	public List<ClienteModel> listarCliente() {
+		return clienteTransform.transformEM(clienteRepository.findAll());
+	}
+
+	@Override
+	public ClienteModel buscarCliente(String sIdTipoDocumento, String sNumeroDocumento) {
+		List<ClienteModel> lModelCliente= clienteTransform.transformEM(clienteRepository.findAll());
+		lModelCliente = lModelCliente.stream().filter(s -> s.getsIdTipoDocumento().equals(sIdTipoDocumento) && s.getsNumeroDocumento().equals(sNumeroDocumento)).collect(Collectors.toList());
+		return lModelCliente.get(0);
+	}
 	
 	@Override
 	public void registrarCliente(UsuarioClienteForm cliente) {

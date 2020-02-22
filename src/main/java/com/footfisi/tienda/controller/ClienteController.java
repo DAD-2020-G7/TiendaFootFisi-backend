@@ -1,15 +1,19 @@
 package com.footfisi.tienda.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.footfisi.tienda.form.MensajeForm;
 import com.footfisi.tienda.form.UsuarioClienteForm;
+import com.footfisi.tienda.model.ClienteModel;
 import com.footfisi.tienda.service.impl.ClienteServicioImpl;
 import com.footfisi.tienda.service.impl.PersonaServicioImpl;
 import com.footfisi.tienda.service.impl.UsuarioServicioImpl;
@@ -27,6 +31,17 @@ public class ClienteController {
 	@Qualifier("usuarioService")
 	private UsuarioServicioImpl usuarioServicio;
 		
+	@GetMapping("/api/cliente/listar")
+	public List<ClienteModel> listrarClientes(){
+		return clienteServicio.listarCliente();
+	}
+	
+	@GetMapping("/api/cliente/buscar/{sIdTipoDocumento}/{sNumeroDocumento}")
+	public ClienteModel buscarCliente(@PathVariable("sIdTipoDocumento") String sIdTipoDocumento,
+			@PathVariable("sNumeroDocumento") String sNumeroDocumento) {
+		return clienteServicio.buscarCliente(sIdTipoDocumento, sNumeroDocumento);
+	}
+	
 	@PostMapping("/api/cliente/registrar")
 	public MensajeForm registrarCliente(@RequestBody UsuarioClienteForm oClienteForm) {
 		personaServicio.registrarPersonaCliente(oClienteForm);
@@ -38,4 +53,5 @@ public class ClienteController {
 		mensaje.setsMensaje("Cliente registrado correctamente");
 		return mensaje;
 	}
+	
 }

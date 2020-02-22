@@ -1,5 +1,6 @@
 package com.footfisi.tienda.transform;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -34,7 +35,15 @@ public class UsuarioTransform implements Transform<UsuarioModel, SegUsuario>{
 
 	@Override
 	public List<SegUsuario> transformME(List<UsuarioModel> lModel) {
-		// TODO Auto-generated method stub
+		if(lModel != null) {
+			List<SegUsuario> lEntityUsuario = new ArrayList<>();
+			
+			for(UsuarioModel model : lModel) {
+				lEntityUsuario.add(transformME(model));
+			}
+			
+			return lEntityUsuario;
+		}
 		return null;
 	}
 
@@ -55,7 +64,15 @@ public class UsuarioTransform implements Transform<UsuarioModel, SegUsuario>{
 
 	@Override
 	public List<UsuarioModel> transformEM(List<SegUsuario> lEntity) {
-		// TODO Auto-generated method stub
+		if(lEntity != null) {
+			List<UsuarioModel> lModelUsuario = new ArrayList<>();
+			
+			for(SegUsuario entity : lEntity) {
+				lModelUsuario.add(transformEM(entity));
+			}
+			
+			return lModelUsuario;
+		}
 		return null;
 	}
 

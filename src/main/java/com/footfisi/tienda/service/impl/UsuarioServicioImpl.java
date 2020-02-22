@@ -1,5 +1,7 @@
 package com.footfisi.tienda.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,16 @@ public class UsuarioServicioImpl implements UsuarioServicio{
 	@Autowired
 	@Qualifier("usuarioTransform")
 	private UsuarioTransform usuarioTransform;
+	
+	@Override
+	public List<UsuarioModel> listarUsuarios() {
+		return usuarioTransform.transformEM(usuarioRepository.findAll());
+	}
+
+	@Override
+	public UsuarioModel buscarUsuario(String sIdUsuario) {
+		return usuarioTransform.transformEM(usuarioRepository.findByIdUsuario(sIdUsuario));
+	}
 	
 	@Override
 	public void registrarUsuarioCliente(UsuarioClienteForm clienteForm) {

@@ -1,5 +1,6 @@
 package com.footfisi.tienda.transform;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -44,13 +45,34 @@ public class ClienteTransform implements Transform<ClienteModel, RegCliente>, Tr
 
 	@Override
 	public ClienteModel transformEM(RegCliente oEntity) {
-		// TODO Auto-generated method stub
+		if(oEntity != null) {
+			ClienteModel oModelCliente = new ClienteModel();
+			
+			oModelCliente.setsIdTipoDocumento(oEntity.getId().getIdTipoDocumento());
+			oModelCliente.setsNumeroDocumento(oEntity.getId().getVnumeroDocumento());
+			oModelCliente.setsNombres(oEntity.getVnombres());
+			oModelCliente.setsApellidoPaterno(oEntity.getVapellidoPaterno());
+			oModelCliente.setsAapellidoMaterno(oEntity.getVapellidoMaterno());
+			oModelCliente.setsDireccion(oEntity.getVdireccion());
+			oModelCliente.setsCelular(oEntity.getVcelular());
+			oModelCliente.setsDireccion(oEntity.getVdireccion());
+			
+			return oModelCliente;
+		}
 		return null;
 	}
 
 	@Override
 	public List<ClienteModel> transformEM(List<RegCliente> lEntity) {
-		// TODO Auto-generated method stub
+		if(lEntity != null) {
+			List<ClienteModel> lModelCliente = new ArrayList<>();
+			
+			for(RegCliente entity : lEntity) {
+				lModelCliente.add(transformEM(entity));
+			}
+			
+			return lModelCliente;
+		}
 		return null;
 	}
 
