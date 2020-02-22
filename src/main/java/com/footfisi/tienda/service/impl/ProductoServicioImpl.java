@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.footfisi.tienda.entity.MantProducto;
+import com.footfisi.tienda.form.ProductoForm;
 import com.footfisi.tienda.model.ProductoModel;
 import com.footfisi.tienda.repository.RepositoryProducto;
 import com.footfisi.tienda.service.inter.ProductoServicio;
+import com.footfisi.tienda.transform.ProductoFormTransform;
 import com.footfisi.tienda.transform.ProductoTransform;
 
 @Service("productoService")
@@ -20,6 +22,9 @@ public class ProductoServicioImpl implements ProductoServicio{
 	@Autowired
 	@Qualifier("productoTransform")
 	private ProductoTransform productoTransform;
+	@Autowired
+	@Qualifier("productoFormTransform")
+	private ProductoFormTransform productoFormTransform;
 	
 	@Override
 	public List<ProductoModel> listarProductos() {
@@ -27,8 +32,11 @@ public class ProductoServicioImpl implements ProductoServicio{
 	}
 
 	@Override
-	public void registrarProducto(ProductoModel oModel) {
-		oModel.setIdProducto((int)(productoRepository.count()) + 1);
+	public void registrarProducto(ProductoForm oForm) {
+		oForm.setIdProducto((int)(productoRepository.count()) + 1);
+		
+		ProductoModel oModel = productoFormTransform.transformFM(oForm);
+		
 		productoRepository.save(productoTransform.transformME(oModel));
 	}
 

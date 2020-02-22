@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,14 +23,14 @@ import javax.persistence.Table;
 public class MantProducto implements java.io.Serializable {
 
 	private int idProducto;
-	private MantProductoCategoria mantProductoCategoria;
-	private MantProductoTalla mantProductoTalla;
+	private MantCategoria mantProductoCategoria;
 	private String vnombre;
 	private String vdescripcion;
 	private BigDecimal nprecioUnitario;
 	private Integer ncantidad;
 	private String vfoto;
 	private Set<RegPedidoProducto> regPedidoProductos = new HashSet<RegPedidoProducto>(0);
+	private Set<MantProductoTalla> mantTallas = new HashSet<MantProductoTalla>(0);
 
 	public MantProducto() {
 	}
@@ -38,12 +40,12 @@ public class MantProducto implements java.io.Serializable {
 		this.vfoto = vfoto;
 	}
 
-	public MantProducto(int idProducto, MantProductoCategoria mantProductoCategoria,
-			MantProductoTalla mantProductoTalla, String vnombre, String vdescripcion, BigDecimal nprecioUnitario,
-			Integer ncantidad, String vfoto, Set<RegPedidoProducto> regPedidoProductos) {
+	public MantProducto(int idProducto, MantCategoria mantProductoCategoria,
+			MantTalla mantProductoTalla, String vnombre, String vdescripcion, BigDecimal nprecioUnitario,
+			Integer ncantidad, String vfoto, Set<RegPedidoProducto> regPedidoProductos, Set<MantProductoTalla> mantTallas) {
 		this.idProducto = idProducto;
 		this.mantProductoCategoria = mantProductoCategoria;
-		this.mantProductoTalla = mantProductoTalla;
+		this.mantTallas = mantTallas; 
 		this.vnombre = vnombre;
 		this.vdescripcion = vdescripcion;
 		this.nprecioUnitario = nprecioUnitario;
@@ -65,22 +67,25 @@ public class MantProducto implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_categoria")
-	public MantProductoCategoria getMantProductoCategoria() {
+	public MantCategoria getMantProductoCategoria() {
 		return this.mantProductoCategoria;
 	}
 
-	public void setMantProductoCategoria(MantProductoCategoria mantProductoCategoria) {
+	public void setMantProductoCategoria(MantCategoria mantProductoCategoria) {
 		this.mantProductoCategoria = mantProductoCategoria;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_talla")
-	public MantProductoTalla getMantProductoTalla() {
-		return this.mantProductoTalla;
+	/*@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "mant_producto_talla", schema = "public", joinColumns = {
+			@JoinColumn(name = "id_producto", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "id_talla", nullable = false, updatable = false) })*/
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "mantProducto")
+	public Set<MantProductoTalla> getMantTallas() {
+		return this.mantTallas;
 	}
 
-	public void setMantProductoTalla(MantProductoTalla mantProductoTalla) {
-		this.mantProductoTalla = mantProductoTalla;
+	public void setMantTallas(Set<MantProductoTalla> mantTallas) {
+		this.mantTallas = mantTallas;
 	}
 
 	@Column(name = "\"vNombre\"")

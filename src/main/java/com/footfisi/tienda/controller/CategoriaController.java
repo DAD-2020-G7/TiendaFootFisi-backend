@@ -9,28 +9,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.footfisi.tienda.model.CategoriaProductoModel;
-import com.footfisi.tienda.service.impl.CategoriaProductoServicioImpl;
+import com.footfisi.tienda.model.CategoriaModel;
+import com.footfisi.tienda.service.impl.CategoriaServicioImpl;
 
 @CrossOrigin
 @RestController
-public class CategoriaProductoController {
+public class CategoriaController {
 	@Autowired
-	@Qualifier("categoriaProductoService")
-	private CategoriaProductoServicioImpl categoriaProductoServicio;
+	@Qualifier("categoriaService")
+	private CategoriaServicioImpl categoriaProductoServicio;
 
 	@GetMapping("/api/categoria/listar/marca")
-	public List<CategoriaProductoModel> listrarCategoriaPorMarca() {
+	public List<CategoriaModel> listrarCategoriaPorMarca() {
 		return categoriaProductoServicio.listarPorMarca();
 	}
 
 	@GetMapping("/api/categoria/listar/genero/{sMarca}")
-	public List<CategoriaProductoModel> listrarCategoriaPorGenero(@PathVariable("sMarca") String sMarca) {
+	public List<CategoriaModel> listrarCategoriaPorGenero(@PathVariable("sMarca") String sMarca) {
 		return categoriaProductoServicio.listarPorGenero(sMarca);
 	}
 
 	@GetMapping("/api/categoria/listar/tipo/{sMarca}/{sGenero}")
-	public List<CategoriaProductoModel> listrarCategoriaPorGenero(@PathVariable("sMarca") String sMarca,
+	public List<CategoriaModel> listrarCategoriaPorGenero(@PathVariable("sMarca") String sMarca,
 			@PathVariable("sGenero") String sGenero) {
 		return categoriaProductoServicio.listarPorTipo(sMarca, sGenero);
 	}

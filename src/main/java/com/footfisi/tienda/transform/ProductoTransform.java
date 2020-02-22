@@ -8,9 +8,11 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.footfisi.tienda.entity.MantProducto;
-import com.footfisi.tienda.entity.MantProductoCategoria;
 import com.footfisi.tienda.entity.MantProductoTalla;
+import com.footfisi.tienda.entity.MantCategoria;
+import com.footfisi.tienda.entity.MantTalla;
 import com.footfisi.tienda.model.ProductoModel;
+import com.footfisi.tienda.model.TallaModel;
 
 @Component("productoTransform")
 public class ProductoTransform implements Transform<ProductoModel, MantProducto> {
@@ -18,15 +20,12 @@ public class ProductoTransform implements Transform<ProductoModel, MantProducto>
 	@Override
 	public MantProducto transformME(ProductoModel oModel) {
 		if (oModel != null) {
-			MantProductoCategoria oEntityCategoria = new MantProductoCategoria();
+			MantCategoria oEntityCategoria = new MantCategoria();
 			oEntityCategoria.setIdCategoria(oModel.getIdCategoria());
 
-			MantProductoTalla oEntityTalla = new MantProductoTalla();
-			oEntityTalla.setIdTalla(oModel.getIdTalla());
-
 			MantProducto oEntityProducto = new MantProducto();
+			oEntityProducto.setIdProducto(oModel.getIdProducto());
 			oEntityProducto.setMantProductoCategoria(oEntityCategoria);
-			oEntityProducto.setMantProductoTalla(oEntityTalla);
 			oEntityProducto.setVdescripcion(oModel.getsDescripcion());
 			oEntityProducto.setVnombre(oModel.getsNombre());
 			oEntityProducto.setNcantidad(oModel.getnCantidad());
@@ -62,10 +61,18 @@ public class ProductoTransform implements Transform<ProductoModel, MantProducto>
 			oModelProducto.setsMarca(oEntity.getMantProductoCategoria().getVmarca());
 			oModelProducto.setsGenero(oEntity.getMantProductoCategoria().getVgenero());
 			oModelProducto.setsTipo(oEntity.getMantProductoCategoria().getVtipo());
+			
+			List<TallaModel> lModelTalla = new ArrayList<>();
 
-			oModelProducto.setIdTalla(oEntity.getMantProductoTalla().getIdTalla());
-			oModelProducto.setsTalla(oEntity.getMantProductoTalla().getVdescripcion());
-
+			for(MantProductoTalla auxiliar : oEntity.getMantTallas()) {
+				TallaModel oModelTalla = new TallaModel();
+				oModelTalla.setnIdTalla(auxiliar.getMantTalla().getIdTalla());
+				oModelTalla.setsDescripcion(auxiliar.getMantTalla().getVdescripcion());
+				
+				lModelTalla.add(oModelTalla);
+			}
+			oModelProducto.setlTallas(lModelTalla);
+			
 			oModelProducto.setsNombre(oEntity.getVnombre());
 			oModelProducto.setsDescripcion(oEntity.getVdescripcion());
 			oModelProducto.setnCantidad(oEntity.getNcantidad());

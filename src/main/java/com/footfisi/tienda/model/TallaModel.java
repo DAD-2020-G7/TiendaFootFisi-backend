@@ -1,6 +1,6 @@
 package com.footfisi.tienda.model;
 
-public class TallaProductoModel {
+public class TallaModel {
 	private int nIdTalla;
 	private String sDescripcion;
 

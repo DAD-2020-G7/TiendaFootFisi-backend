@@ -1,17 +1,27 @@
-package com.footfisi.tienda.model;
+package com.footfisi.tienda.filter;
 
-public class CategoriaProductoModel {
-	private int nIdCategoria;
+public class FiltroProducto {
+	private String sNombre;
+
+	private int idCategoria;
 	private String sMarca;
 	private String sGenero;
 	private String sTipo;
 
-	public int getnIdCategoria() {
-		return nIdCategoria;
+	public String getsNombre() {
+		return sNombre;
 	}
 
-	public void setnIdCategoria(int nIdCategoria) {
-		this.nIdCategoria = nIdCategoria;
+	public void setsNombre(String sNombre) {
+		this.sNombre = sNombre;
+	}
+
+	public int getIdCategoria() {
+		return idCategoria;
+	}
+
+	public void setIdCategoria(int idCategoria) {
+		this.idCategoria = idCategoria;
 	}
 
 	public String getsMarca() {

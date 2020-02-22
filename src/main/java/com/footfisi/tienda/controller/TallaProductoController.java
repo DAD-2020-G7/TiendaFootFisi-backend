@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.footfisi.tienda.model.TallaProductoModel;
-import com.footfisi.tienda.service.impl.TallaProductoServicioImpl;
+import com.footfisi.tienda.model.TallaModel;
+import com.footfisi.tienda.service.impl.TallaServicioImpl;
 
 @CrossOrigin
 @RestController
 public class TallaProductoController {
 	@Autowired
-	@Qualifier("tallaProductoService")
-	private	TallaProductoServicioImpl tallaProductoServicio;
+	@Qualifier("tallaService")
+	private	TallaServicioImpl tallaProductoServicio;
 	
 	@GetMapping("/api/talla/listar")
-	public List<TallaProductoModel> listrarTallas() {
+	public List<TallaModel> listrarTallas() {
 		return tallaProductoServicio.listarTallas();
 	}
 	

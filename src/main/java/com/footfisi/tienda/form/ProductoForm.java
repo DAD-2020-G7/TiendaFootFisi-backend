@@ -1,8 +1,6 @@
-package com.footfisi.tienda.model;
+package com.footfisi.tienda.form;
 
-import java.util.List;
-
-public class ProductoModel {
+public class ProductoForm {
 	private int idProducto;
 
 	private int idCategoria;
@@ -10,7 +8,8 @@ public class ProductoModel {
 	private String sGenero;
 	private String sTipo;
 
-	private List<TallaModel> lTallas;
+	private int idTalla;
+	private String sTalla;
 
 	private String sNombre;
 	private String sDescripcion;
@@ -58,12 +57,20 @@ public class ProductoModel {
 		this.sTipo = sTipo;
 	}
 
-	public List<TallaModel> getlTallas() {
-		return lTallas;
+	public int getIdTalla() {
+		return idTalla;
 	}
 
-	public void setlTallas(List<TallaModel> lTallas) {
-		this.lTallas = lTallas;
+	public void setIdTalla(int idTalla) {
+		this.idTalla = idTalla;
+	}
+
+	public String getsTalla() {
+		return sTalla;
+	}
+
+	public void setsTalla(String sTalla) {
+		this.sTalla = sTalla;
 	}
 
 	public String getsNombre() {
@@ -105,5 +112,4 @@ public class ProductoModel {
 	public void setsFoto(String sFoto) {
 		this.sFoto = sFoto;
 	}
-
 }

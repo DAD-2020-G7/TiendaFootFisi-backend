@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.footfisi.tienda.filter.FiltroCategoria;
+import com.footfisi.tienda.filter.FiltroProducto;
+import com.footfisi.tienda.form.MensajeForm;
+import com.footfisi.tienda.form.ProductoForm;
 import com.footfisi.tienda.model.ProductoModel;
 import com.footfisi.tienda.service.impl.ProductoServicioImpl;
 import com.footfisi.tienda.util.UtilList;
@@ -33,7 +35,7 @@ public class ProductoController {
 	}
 	
 	@PostMapping("/api/producto/listar/filtro")
-	public List<ProductoModel> listrarProductosPorCategoria(@RequestBody FiltroCategoria filtro){
+	public List<ProductoModel> listrarProductosPorCategoria(@RequestBody FiltroProducto filtro){
 		List<ProductoModel> lProductoModel = productoServicio.listarProductos();
 		
 		if(!filtro.getsMarca().equals("")) {
@@ -51,8 +53,8 @@ public class ProductoController {
 					.collect(Collectors.toList());
 		}
 		
-		if(!filtro.getsTalla().equals("")) {
-			lProductoModel = lProductoModel.stream().filter(s -> s.getsTalla().equals(filtro.getsTalla()))
+		if(!filtro.getsNombre().equals("")) {
+			lProductoModel = lProductoModel.stream().filter(s -> s.getsNombre().toUpperCase().contains(filtro.getsNombre().toUpperCase()))
 					.collect(Collectors.toList());
 		}
 		
@@ -60,9 +62,12 @@ public class ProductoController {
 	}
 	
 	@PostMapping("/api/producto/registrar")
-	public ResponseEntity<String> registrarProducto(@RequestBody ProductoModel oModel) {
-		productoServicio.registrarProducto(oModel);
-		return ResponseEntity.ok("Producto registrado correctamente");
+	public MensajeForm registrarProducto(@RequestBody ProductoForm oForm) {
+		productoServicio.registrarProducto(oForm);
+		MensajeForm mensaje = new MensajeForm();
+		mensaje.setsTipo("1");
+		mensaje.setsMensaje("Producto registrado correctamente");
+		return mensaje;
 	}
 
 	@PostMapping("/api/producto/actualizar")

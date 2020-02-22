@@ -1,13 +1,14 @@
 package com.footfisi.tienda.entity;
-// Generated 09-feb-2020 20:45:28 by Hibernate Tools 4.3.5.Final
+// Generated 16-feb-2020 9:02:08 by Hibernate Tools 4.3.5.Final
 
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -17,50 +18,48 @@ import javax.persistence.Table;
 @Table(name = "mant_producto_talla", schema = "public")
 public class MantProductoTalla implements java.io.Serializable {
 
-	private int idTalla;
-	private String vdescripcion;
-	private Set<MantProducto> mantProductos = new HashSet<MantProducto>(0);
+	private MantProductoTallaId id;
+	private MantProducto mantProducto;
+	private MantTalla mantTalla;
 
 	public MantProductoTalla() {
 	}
 
-	public MantProductoTalla(int idTalla) {
-		this.idTalla = idTalla;
+	public MantProductoTalla(MantProductoTallaId id) {
+		this.id = id;
 	}
 
-	public MantProductoTalla(int idTalla, String vdescripcion, Set<MantProducto> mantProductos) {
-		this.idTalla = idTalla;
-		this.vdescripcion = vdescripcion;
-		this.mantProductos = mantProductos;
+	@EmbeddedId
+
+	@AttributeOverrides({
+			@AttributeOverride(name = "idProducto", column = @Column(name = "\"id_Producto\"", nullable = false)),
+			@AttributeOverride(name = "idTalla", column = @Column(name = "\"id_Talla\"", nullable = false)) })
+	public MantProductoTallaId getId() {
+		return this.id;
 	}
 
-	@Id
-
-	@Column(name = "id_talla", unique = true, nullable = false)
-	public int getIdTalla() {
-		return this.idTalla;
+	public void setId(MantProductoTallaId id) {
+		this.id = id;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "\"id_Talla\"", nullable = false, insertable = false, updatable = false)
+	public MantTalla getMantTalla() {
+		return this.mantTalla;
 	}
 
-	public void setIdTalla(int idTalla) {
-		this.idTalla = idTalla;
+	public void setMantTalla(MantTalla mantTalla) {
+		this.mantTalla = mantTalla;
 	}
 
-	@Column(name = "\"vDescripcion\"")
-	public String getVdescripcion() {
-		return this.vdescripcion;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "\"id_Producto\"", nullable = false, insertable = false, updatable = false)
+	public MantProducto getMantProducto() {
+		return mantProducto;
 	}
 
-	public void setVdescripcion(String vdescripcion) {
-		this.vdescripcion = vdescripcion;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "mantProductoTalla")
-	public Set<MantProducto> getMantProductos() {
-		return this.mantProductos;
-	}
-
-	public void setMantProductos(Set<MantProducto> mantProductos) {
-		this.mantProductos = mantProductos;
+	public void setMantProducto(MantProducto mantProducto) {
+		this.mantProducto = mantProducto;
 	}
 
 }

@@ -7,33 +7,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.footfisi.tienda.entity.MantProductoCategoria;
-import com.footfisi.tienda.model.CategoriaProductoModel;
-import com.footfisi.tienda.repository.RepositoryCategoriaProducto;
-import com.footfisi.tienda.service.inter.CategoriaProductoServicio;
-import com.footfisi.tienda.transform.CategoriaProductoTransform;
+import com.footfisi.tienda.entity.MantCategoria;
+import com.footfisi.tienda.model.CategoriaModel;
+import com.footfisi.tienda.repository.RepositoryCategoria;
+import com.footfisi.tienda.service.inter.CategoriaServicio;
+import com.footfisi.tienda.transform.CategoriaTransform;
 import com.footfisi.tienda.util.UtilList;
 
-@Service("categoriaProductoService")
-public class CategoriaProductoServicioImpl implements CategoriaProductoServicio {
+@Service("categoriaService")
+public class CategoriaServicioImpl implements CategoriaServicio {
 	@Autowired
-	@Qualifier("categoriaProductoRepository")
-	private RepositoryCategoriaProducto categoriaProductoRepository;
+	@Qualifier("categoriaRepository")
+	private RepositoryCategoria categoriaProductoRepository;
 	@Autowired
-	@Qualifier("categoriaProductoTransform")
-	private CategoriaProductoTransform categoriaProductoTransform;
+	@Qualifier("categoriaTransform")
+	private CategoriaTransform categoriaProductoTransform;
 
 	@Override
-	public List<CategoriaProductoModel> listarPorMarca() {
-		List<CategoriaProductoModel> listaCategoriaProductoModel = categoriaProductoTransform.transformEM(categoriaProductoRepository.findAll());
+	public List<CategoriaModel> listarPorMarca() {
+		List<CategoriaModel> listaCategoriaProductoModel = categoriaProductoTransform.transformEM(categoriaProductoRepository.findAll());
 		listaCategoriaProductoModel = listaCategoriaProductoModel.stream().filter( UtilList.distinctByKey(p -> p.getsMarca())).collect( Collectors.toList() );
 		
 		return listaCategoriaProductoModel;
 	}
 
 	@Override
-	public List<CategoriaProductoModel> listarPorGenero(String sMarca) {
-		List<MantProductoCategoria> lEntityCategoriaProducto = categoriaProductoRepository.findAll();
+	public List<CategoriaModel> listarPorGenero(String sMarca) {
+		List<MantCategoria> lEntityCategoriaProducto = categoriaProductoRepository.findAll();
 		lEntityCategoriaProducto = lEntityCategoriaProducto.stream().filter(s -> s.getVmarca().equals(sMarca))
 				.collect(Collectors.toList());
 		lEntityCategoriaProducto = lEntityCategoriaProducto.stream().filter( UtilList.distinctByKey(s -> s.getVgenero()) )
@@ -42,8 +42,8 @@ public class CategoriaProductoServicioImpl implements CategoriaProductoServicio 
 	}
 
 	@Override
-	public List<CategoriaProductoModel> listarPorTipo(String sMarca, String sGenero) {
-		List<MantProductoCategoria> lEntityCategoriaProducto = categoriaProductoRepository.findAll();
+	public List<CategoriaModel> listarPorTipo(String sMarca, String sGenero) {
+		List<MantCategoria> lEntityCategoriaProducto = categoriaProductoRepository.findAll();
 		lEntityCategoriaProducto = lEntityCategoriaProducto.stream().filter(s -> s.getVmarca().equals(sMarca))
 				.collect(Collectors.toList());
 		lEntityCategoriaProducto = lEntityCategoriaProducto.stream().filter(s -> s.getVgenero().equals(sGenero))
