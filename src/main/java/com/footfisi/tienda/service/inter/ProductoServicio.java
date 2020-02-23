@@ -8,6 +8,6 @@ import com.footfisi.tienda.model.ProductoModel;
 public interface ProductoServicio {
 	public List<ProductoModel> listarProductos();
 	public void registrarProducto(ProductoForm oForm);
-	public void actualizarProducto(ProductoModel oModel);
+	public void actualizarProducto(ProductoForm oForm);
 	public void actualizarStock(int idProducto, int nCantidad);
 }

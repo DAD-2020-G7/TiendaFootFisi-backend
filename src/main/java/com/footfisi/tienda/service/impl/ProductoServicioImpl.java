@@ -41,7 +41,8 @@ public class ProductoServicioImpl implements ProductoServicio{
 	}
 
 	@Override
-	public void actualizarProducto(ProductoModel oModel) {
+	public void actualizarProducto(ProductoForm oForm) {
+		ProductoModel oModel = productoFormTransform.transformFM(oForm);
 		productoRepository.save(productoTransform.transformME(oModel));
 	}
 

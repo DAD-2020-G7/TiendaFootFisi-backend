@@ -23,6 +23,7 @@ public class PedidoDetalleTransform implements Transform<PedidoDetalleModel, Reg
 			oEntityPedidoProducto.setId(oEntityPedidoProductoId);
 			oEntityPedidoProducto.setNcantidad(oModel.getnCantidadProducto());
 			oEntityPedidoProducto.setNsubTotal(BigDecimal.valueOf(oModel.getnTotalParcial()));
+			oEntityPedidoProducto.setNidTalla(oModel.getnIdTalla());
 			
 			return oEntityPedidoProducto;
 		}

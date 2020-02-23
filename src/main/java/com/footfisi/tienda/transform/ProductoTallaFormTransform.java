@@ -1,22 +1,32 @@
 package com.footfisi.tienda.transform;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.footfisi.tienda.form.ProductoForm;
+import com.footfisi.tienda.form.ProductoTallaForm;
 import com.footfisi.tienda.model.ProductoTallaModel;
 
 @Component("productoTallaFormTransform")
-public class ProductoTallaFormTransform implements TransformForm<ProductoTallaModel, ProductoForm>{
+public class ProductoTallaFormTransform implements TransformForm<List<ProductoTallaModel>, ProductoForm>{
 
 	@Override
-	public ProductoTallaModel transformFM(ProductoForm oForm) {
+	public List<ProductoTallaModel> transformFM(ProductoForm oForm) {
 		if(oForm != null) {
-			ProductoTallaModel oModelProductoTalla = new ProductoTallaModel();
+			List<ProductoTallaModel> lModelProductoTalla = new ArrayList<>();
 			
-			oModelProductoTalla.setIdProducto(oForm.getIdProducto());
-			oModelProductoTalla.setnIdTalla(oForm.getIdTalla());
+			for(ProductoTallaForm form : oForm.getlTallas()) {
+				ProductoTallaModel oModelProductoTalla = new ProductoTallaModel();
+				
+				oModelProductoTalla.setIdProducto(oForm.getIdProducto());
+				oModelProductoTalla.setnIdTalla(form.getnIdTalla());
+				
+				lModelProductoTalla.add(oModelProductoTalla);
+			}
 			
-			return oModelProductoTalla;
+			return lModelProductoTalla;
 		}
 		return null;
 	}

@@ -1,5 +1,7 @@
 package com.footfisi.tienda.form;
 
+import java.util.List;
+
 public class ProductoForm {
 	private int idProducto;
 
@@ -8,8 +10,7 @@ public class ProductoForm {
 	private String sGenero;
 	private String sTipo;
 
-	private int idTalla;
-	private String sTalla;
+	private List<ProductoTallaForm> lTallas;
 
 	private String sNombre;
 	private String sDescripcion;
@@ -57,20 +58,12 @@ public class ProductoForm {
 		this.sTipo = sTipo;
 	}
 
-	public int getIdTalla() {
-		return idTalla;
+	public List<ProductoTallaForm> getlTallas() {
+		return lTallas;
 	}
 
-	public void setIdTalla(int idTalla) {
-		this.idTalla = idTalla;
-	}
-
-	public String getsTalla() {
-		return sTalla;
-	}
-
-	public void setsTalla(String sTalla) {
-		this.sTalla = sTalla;
+	public void setlTallas(List<ProductoTallaForm> lTallas) {
+		this.lTallas = lTallas;
 	}
 
 	public String getsNombre() {

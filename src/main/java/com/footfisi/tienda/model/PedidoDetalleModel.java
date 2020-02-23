@@ -5,6 +5,7 @@ public class PedidoDetalleModel {
 	private String sNombreProducto;
 	private int nCantidadProducto;
 	private double nTotalParcial;
+	private int nIdTalla;
 
 	public int getnIdProducto() {
 		return nIdProducto;
@@ -36,6 +37,14 @@ public class PedidoDetalleModel {
 
 	public void setnTotalParcial(double nTotalParcial) {
 		this.nTotalParcial = nTotalParcial;
+	}
+
+	public int getnIdTalla() {
+		return nIdTalla;
+	}
+
+	public void setnIdTalla(int nIdTalla) {
+		this.nIdTalla = nIdTalla;
 	}
 
 }

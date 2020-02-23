@@ -1,12 +1,11 @@
 package com.footfisi.tienda.form;
 
-import java.util.List;
-
 public class PedidoDetalleForm {
 	private String codItem;
 	private String descripcionItem;
 	private int cantidadItem;
 	private double precioItem;
+	private int tallaItem;
 
 	public String getCodItem() {
 		return codItem;
@@ -38,6 +37,14 @@ public class PedidoDetalleForm {
 
 	public void setPrecioItem(double precioItem) {
 		this.precioItem = precioItem;
+	}
+
+	public int getTallaItem() {
+		return tallaItem;
+	}
+
+	public void setTallaItem(int tallaItem) {
+		this.tallaItem = tallaItem;
 	}
 
 }

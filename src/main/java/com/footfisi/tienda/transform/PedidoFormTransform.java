@@ -42,6 +42,7 @@ public class PedidoFormTransform implements TransformForm<PedidoModel, PedidoFor
 				oModelDetalle.setnCantidadProducto(detalle.getCantidadItem());
 				oModelDetalle.setsNombreProducto(detalle.getDescripcionItem());
 				oModelDetalle.setnTotalParcial(detalle.getPrecioItem() * detalle.getCantidadItem());
+				oModelDetalle.setnIdTalla(detalle.getTallaItem());
 				
 				lModelPedidoDetalle.add(oModelDetalle);
 			}

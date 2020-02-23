@@ -24,6 +24,7 @@ public class RegPedidoProducto implements java.io.Serializable {
 	private RegPedido regPedido;
 	private Integer ncantidad;
 	private BigDecimal nsubTotal;
+	private Integer nidTalla;
 
 	public RegPedidoProducto() {
 	}
@@ -35,12 +36,13 @@ public class RegPedidoProducto implements java.io.Serializable {
 	}
 
 	public RegPedidoProducto(RegPedidoProductoId id, MantProducto mantProducto, RegPedido regPedido, Integer ncantidad,
-			BigDecimal nsubTotal) {
+			BigDecimal nsubTotal, Integer nidTalla) {
 		this.id = id;
 		this.mantProducto = mantProducto;
 		this.regPedido = regPedido;
 		this.ncantidad = ncantidad;
 		this.nsubTotal = nsubTotal;
+		this.nidTalla = nidTalla;
 	}
 
 	@EmbeddedId
@@ -93,4 +95,13 @@ public class RegPedidoProducto implements java.io.Serializable {
 		this.nsubTotal = nsubTotal;
 	}
 
+	@Column(name = "\"nIdTalla\"")
+	public Integer getNidTalla() {
+		return nidTalla;
+	}
+
+	public void setNidTalla(Integer nidTalla) {
+		this.nidTalla = nidTalla;
+	}
+	
 }

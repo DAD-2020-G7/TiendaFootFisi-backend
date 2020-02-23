@@ -11,7 +11,6 @@ import com.footfisi.tienda.form.MensajeForm;
 import com.footfisi.tienda.model.ClienteModel;
 import com.footfisi.tienda.model.UsuarioModel;
 import com.footfisi.tienda.service.impl.ClienteServicioImpl;
-import com.footfisi.tienda.service.impl.PersonaServicioImpl;
 import com.footfisi.tienda.service.impl.UsuarioServicioImpl;
 
 @CrossOrigin
@@ -36,7 +35,7 @@ public class LoginController {
 			if (oModelUsuario.getsContrasenia().equals(sContrasenia)) {
 				ClienteModel oModelCliente = clienteServicio.buscarCliente(oModelUsuario.getsIdTipoDocumento(), oModelUsuario.getsNumeroDocumento());
 				if(oModelCliente != null) {
-					mensaje.setsTipo("4");
+					mensaje.setsTipo("3");
 					mensaje.setsMensaje("Usuario registrado - cliente.");
 				}
 			} else {
@@ -44,7 +43,7 @@ public class LoginController {
 				mensaje.setsMensaje("La contraseña no coincide.");
 			}
 		} else {
-			mensaje.setsTipo("3");
+			mensaje.setsTipo("5");
 			mensaje.setsMensaje("No existe usuario.");
 		}
 
