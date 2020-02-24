@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.footfisi.tienda.form.MensajeForm;
 import com.footfisi.tienda.form.UsuarioClienteForm;
 import com.footfisi.tienda.model.ClienteModel;
+import com.footfisi.tienda.model.UsuarioModel;
 import com.footfisi.tienda.service.impl.ClienteServicioImpl;
 import com.footfisi.tienda.service.impl.PersonaServicioImpl;
 import com.footfisi.tienda.service.impl.UsuarioServicioImpl;
@@ -44,13 +45,31 @@ public class ClienteController {
 	
 	@PostMapping("/api/cliente/registrar")
 	public MensajeForm registrarCliente(@RequestBody UsuarioClienteForm oClienteForm) {
-		personaServicio.registrarPersonaCliente(oClienteForm);
-		clienteServicio.registrarCliente(oClienteForm);
-		usuarioServicio.registrarUsuarioCliente(oClienteForm);
-		
 		MensajeForm mensaje = new MensajeForm();
-		mensaje.setsTipo("1");
-		mensaje.setsMensaje("Cliente registrado correctamente");
+		
+		ClienteModel oModelCliente = clienteServicio.buscarCliente(oClienteForm.getsIdTipoDocumento(), oClienteForm.getsNumeroDocumento());
+		
+		if(oModelCliente == null) {
+			UsuarioModel oModelUsuario = usuarioServicio.buscarUsuario(oClienteForm.getsIdUsuario());
+			
+			if(oModelUsuario == null) {
+				personaServicio.registrarPersonaCliente(oClienteForm);
+				clienteServicio.registrarCliente(oClienteForm);
+				usuarioServicio.registrarUsuarioCliente(oClienteForm);
+				
+				mensaje.setsTipo("1");
+				mensaje.setsMensaje("Cliente registrado correctamente");
+			}
+			else {
+				mensaje.setsTipo("0");
+				mensaje.setsMensaje("Ya existe el usuario " + oModelUsuario.getsIdUsuario());
+			}
+			
+		}
+		else {
+			mensaje.setsTipo("0");
+			mensaje.setsMensaje("Ya existe un cliente " + oModelCliente.getsApellidoPaterno() + " " + oModelCliente.getsAapellidoMaterno() + ", " + oModelCliente.getsNombres());
+		}
 		return mensaje;
 	}
 	

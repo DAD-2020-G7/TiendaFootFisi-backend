@@ -24,7 +24,7 @@ public class LoginController {
 	private ClienteServicioImpl clienteServicio;
 
 	@GetMapping("/api/login/usuario/{sIdUsuario}/{sContrasenia}")
-	public MensajeForm buscarCliente(@PathVariable("sIdUsuario") String sIdUsuario,
+	public Object buscarCliente(@PathVariable("sIdUsuario") String sIdUsuario,
 			@PathVariable("sContrasenia") String sContrasenia) {
 
 		MensajeForm mensaje = new MensajeForm();
@@ -35,8 +35,7 @@ public class LoginController {
 			if (oModelUsuario.getsContrasenia().equals(sContrasenia)) {
 				ClienteModel oModelCliente = clienteServicio.buscarCliente(oModelUsuario.getsIdTipoDocumento(), oModelUsuario.getsNumeroDocumento());
 				if(oModelCliente != null) {
-					mensaje.setsTipo("3");
-					mensaje.setsMensaje("Usuario registrado - cliente.");
+					return oModelCliente;
 				}
 			} else {
 				mensaje.setsTipo("4");
