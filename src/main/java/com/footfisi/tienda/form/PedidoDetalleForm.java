@@ -3,9 +3,9 @@ package com.footfisi.tienda.form;
 public class PedidoDetalleForm {
 	private String codItem;
 	private String descripcionItem;
+	private int tallaItem;
 	private int cantidadItem;
 	private double precioItem;
-	private int tallaItem;
 
 	public String getCodItem() {
 		return codItem;
