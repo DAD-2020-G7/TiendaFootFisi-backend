@@ -30,8 +30,14 @@ public class ClienteServicioImpl implements ClienteServicio{
 	@Override
 	public ClienteModel buscarCliente(String sIdTipoDocumento, String sNumeroDocumento) {
 		List<ClienteModel> lModelCliente= clienteTransform.transformEM(clienteRepository.findAll());
-		lModelCliente = lModelCliente.stream().filter(s -> s.getsIdTipoDocumento().equals(sIdTipoDocumento) && s.getsNumeroDocumento().equals(sNumeroDocumento)).collect(Collectors.toList());
-		return lModelCliente.get(0);
+		if(!lModelCliente.isEmpty()) {
+			lModelCliente = lModelCliente.stream().filter(s -> s.getsIdTipoDocumento().equals(sIdTipoDocumento) && s.getsNumeroDocumento().equals(sNumeroDocumento)).collect(Collectors.toList());
+			return lModelCliente.get(0);
+		}
+		else {
+			return null;
+		}
+		
 	}
 	
 	@Override
