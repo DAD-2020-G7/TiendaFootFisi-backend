@@ -33,8 +33,6 @@ public class ProductoController {
 	@GetMapping("/api/producto/listar")
 	public List<ProductoModel> listrarProductos(){
 		List<ProductoModel> lProductoModel = productoServicio.listarProductos();
-		lProductoModel = lProductoModel.stream().filter(UtilList.distinctByKey(s -> s.getIdCategoria()))
-				.collect(Collectors.toList());
 		return lProductoModel;
 	}
 	
