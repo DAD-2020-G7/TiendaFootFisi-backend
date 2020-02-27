@@ -32,7 +32,8 @@ public class ClienteServicioImpl implements ClienteServicio{
 		List<ClienteModel> lModelCliente= clienteTransform.transformEM(clienteRepository.findAll());
 		if(!lModelCliente.isEmpty()) {
 			lModelCliente = lModelCliente.stream().filter(s -> s.getsIdTipoDocumento().equals(sIdTipoDocumento) && s.getsNumeroDocumento().equals(sNumeroDocumento)).collect(Collectors.toList());
-			return lModelCliente.get(0);
+			
+			return lModelCliente.isEmpty() ? null : lModelCliente.get(0);
 		}
 		else {
 			return null;

@@ -4,7 +4,7 @@ public class PersonaModel {
 	private String sIdTipoDocumento;
 	private String sNumeroDocumento;
 	private String sApellidoPaterno;
-	private String sAapellidoMaterno;
+	private String sApellidoMaterno;
 	private String sNombres;
 
 	public String getsIdTipoDocumento() {
@@ -31,12 +31,12 @@ public class PersonaModel {
 		this.sApellidoPaterno = sApellidoPaterno;
 	}
 
-	public String getsAapellidoMaterno() {
-		return sAapellidoMaterno;
+	public String getsApellidoMaterno() {
+		return sApellidoMaterno;
 	}
 
-	public void setsAapellidoMaterno(String sAapellidoMaterno) {
-		this.sAapellidoMaterno = sAapellidoMaterno;
+	public void setsApellidoMaterno(String sApellidoMaterno) {
+		this.sApellidoMaterno = sApellidoMaterno;
 	}
 
 	public String getsNombres() {

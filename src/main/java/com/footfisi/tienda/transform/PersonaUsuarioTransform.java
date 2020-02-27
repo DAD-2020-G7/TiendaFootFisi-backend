@@ -16,7 +16,7 @@ public class PersonaUsuarioTransform implements TransformForm<PersonaModel, Usua
 			oModelPersona.setsIdTipoDocumento(oForm.getsIdTipoDocumento());
 			oModelPersona.setsNumeroDocumento(oForm.getsNumeroDocumento());
 			oModelPersona.setsApellidoPaterno(oForm.getsApellidoPaterno());
-			oModelPersona.setsAapellidoMaterno(oForm.getsAapellidoMaterno());
+			oModelPersona.setsApellidoMaterno(oForm.getsApellidoMaterno());
 			oModelPersona.setsNombres(oForm.getsNombres());
 			
 			return oModelPersona;

@@ -68,7 +68,7 @@ public class ClienteController {
 		}
 		else {
 			mensaje.setsTipo("0");
-			mensaje.setsMensaje("Ya existe un cliente " + oModelCliente.getsApellidoPaterno() + " " + oModelCliente.getsAapellidoMaterno() + ", " + oModelCliente.getsNombres());
+			mensaje.setsMensaje("Ya existe un cliente " + oModelCliente.getsApellidoPaterno() + " " + oModelCliente.getsApellidoMaterno() + ", " + oModelCliente.getsNombres());
 		}
 		return mensaje;
 	}

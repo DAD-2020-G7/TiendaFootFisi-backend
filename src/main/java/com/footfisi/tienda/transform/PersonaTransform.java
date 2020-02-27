@@ -21,7 +21,7 @@ public class PersonaTransform implements Transform<PersonaModel, RegPersona>{
 			RegPersona oEntityPersona = new RegPersona();
 			oEntityPersona.setId(oEntityPersonaId);
 			oEntityPersona.setVapellidoPaterno(oModel.getsApellidoPaterno());
-			oEntityPersona.setVapellidoMaterno(oModel.getsAapellidoMaterno());
+			oEntityPersona.setVapellidoMaterno(oModel.getsApellidoMaterno());
 			oEntityPersona.setVnombres(oModel.getsNombres());
 			
 			return oEntityPersona;

@@ -22,7 +22,7 @@ public class TrabajadorTransform implements Transform<TrabajadorModel, RegTrabaj
 			RegTrabajador oEntityTrabajador = new RegTrabajador();
 			oEntityTrabajador.setId(oEntityTrabajadorId);
 			oEntityTrabajador.setVapellidoPaterno(oModel.getsApellidoPaterno());
-			oEntityTrabajador.setVapellidoMaterno(oModel.getsAapellidoMaterno());
+			oEntityTrabajador.setVapellidoMaterno(oModel.getsApellidoMaterno());
 			oEntityTrabajador.setVnombres(oModel.getsNombres());
 			oEntityTrabajador.setVtipoTrabajador(oModel.getsTipoTrabajador());
 			
@@ -53,7 +53,7 @@ public class TrabajadorTransform implements Transform<TrabajadorModel, RegTrabaj
 			oModelTrabajador.setsIdTipoDocumento(oEntity.getId().getIdTipoDocumento());
 			oModelTrabajador.setsNumeroDocumento(oEntity.getId().getVnumeroDocumento());
 			oModelTrabajador.setsApellidoPaterno(oEntity.getVapellidoPaterno());
-			oModelTrabajador.setsAapellidoMaterno(oEntity.getVapellidoMaterno());
+			oModelTrabajador.setsApellidoMaterno(oEntity.getVapellidoMaterno());
 			oModelTrabajador.setsNombres(oEntity.getVnombres());
 			oModelTrabajador.setsTipoTrabajador(oEntity.getVtipoTrabajador());
 			

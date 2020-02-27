@@ -26,7 +26,7 @@ public class ClienteTransform implements Transform<ClienteModel, RegCliente>, Tr
 			RegCliente oEntityCliente = new RegCliente();
 			oEntityCliente.setId(oEntityClienteId);
 			oEntityCliente.setVapellidoPaterno(oModel.getsApellidoPaterno());
-			oEntityCliente.setVapellidoMaterno(oModel.getsAapellidoMaterno());
+			oEntityCliente.setVapellidoMaterno(oModel.getsApellidoMaterno());
 			oEntityCliente.setVnombres(oModel.getsNombres());
 			oEntityCliente.setVdireccion(oModel.getsDireccion());
 			oEntityCliente.setVcelular(oModel.getsCelular());
@@ -52,7 +52,7 @@ public class ClienteTransform implements Transform<ClienteModel, RegCliente>, Tr
 			oModelCliente.setsNumeroDocumento(oEntity.getId().getVnumeroDocumento());
 			oModelCliente.setsNombres(oEntity.getVnombres());
 			oModelCliente.setsApellidoPaterno(oEntity.getVapellidoPaterno());
-			oModelCliente.setsAapellidoMaterno(oEntity.getVapellidoMaterno());
+			oModelCliente.setsApellidoMaterno(oEntity.getVapellidoMaterno());
 			oModelCliente.setsDireccion(oEntity.getVdireccion());
 			oModelCliente.setsCelular(oEntity.getVcelular());
 			oModelCliente.setsDireccion(oEntity.getVdireccion());
@@ -87,7 +87,7 @@ public class ClienteTransform implements Transform<ClienteModel, RegCliente>, Tr
 			oModelCliente.setsIdTipoDocumento(oForm.getsIdTipoDocumento());
 			oModelCliente.setsNumeroDocumento(oForm.getsNumeroDocumento());
 			oModelCliente.setsApellidoPaterno(oForm.getsApellidoPaterno());
-			oModelCliente.setsAapellidoMaterno(oForm.getsAapellidoMaterno());
+			oModelCliente.setsApellidoMaterno(oForm.getsApellidoMaterno());
 			oModelCliente.setsNombres(oForm.getsNombres());
 			oModelCliente.setsDireccion(oForm.getsDireccion());
 			oModelCliente.setsCelular(oForm.getsCelular());
