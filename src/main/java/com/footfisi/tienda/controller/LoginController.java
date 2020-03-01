@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.footfisi.tienda.form.MensajeForm;
 import com.footfisi.tienda.model.ClienteModel;
+import com.footfisi.tienda.model.TrabajadorModel;
 import com.footfisi.tienda.model.UsuarioModel;
 import com.footfisi.tienda.service.impl.ClienteServicioImpl;
+import com.footfisi.tienda.service.impl.TrabajadorServicioImpl;
 import com.footfisi.tienda.service.impl.UsuarioServicioImpl;
 
 @CrossOrigin
@@ -22,6 +24,9 @@ public class LoginController {
 	@Autowired
 	@Qualifier("clienteService")
 	private ClienteServicioImpl clienteServicio;
+	@Autowired
+	@Qualifier("trabajadorService")
+	private TrabajadorServicioImpl trabajadorServicio;
 
 	@GetMapping("/api/login/usuario/{sIdUsuario}/{sContrasenia}")
 	public Object buscarCliente(@PathVariable("sIdUsuario") String sIdUsuario,
@@ -36,6 +41,12 @@ public class LoginController {
 				ClienteModel oModelCliente = clienteServicio.buscarCliente(oModelUsuario.getsIdTipoDocumento(), oModelUsuario.getsNumeroDocumento());
 				if(oModelCliente != null) {
 					return oModelCliente;
+				}
+				else {
+					TrabajadorModel oModelTrabajador = trabajadorServicio.buscarTrabajador(oModelUsuario.getsIdTipoDocumento(), oModelUsuario.getsNumeroDocumento());
+					if(oModelTrabajador != null) {
+						return oModelTrabajador;
+					}
 				}
 			} else {
 				mensaje.setsTipo("4");

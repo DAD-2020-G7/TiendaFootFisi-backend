@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 import com.footfisi.tienda.form.UsuarioClienteForm;
 import com.footfisi.tienda.model.PersonaModel;
 
-@Component("personaUsuarioTransform")
-public class PersonaUsuarioTransform implements TransformForm<PersonaModel, UsuarioClienteForm>{
+@Component("personaUsuarioClienteTransform")
+public class PersonaUsuarioClienteTransform implements TransformForm<PersonaModel, UsuarioClienteForm>{
 
 	@Override
 	public PersonaModel transformFM(UsuarioClienteForm oForm) {

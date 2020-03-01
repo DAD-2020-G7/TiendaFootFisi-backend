@@ -7,11 +7,15 @@ import org.springframework.stereotype.Component;
 
 import com.footfisi.tienda.entity.RegTrabajador;
 import com.footfisi.tienda.entity.RegTrabajadorId;
+import com.footfisi.tienda.form.UsuarioTrabajadorForm;
 import com.footfisi.tienda.model.TrabajadorModel;
 
 @Component("trabajadorTransform")
-public class TrabajadorTransform implements Transform<TrabajadorModel, RegTrabajador>{
+public class TrabajadorTransform implements Transform<TrabajadorModel, RegTrabajador>, TransformForm<TrabajadorModel, UsuarioTrabajadorForm>{
 
+	/**
+	 * Hibernate
+	 */
 	@Override
 	public RegTrabajador transformME(TrabajadorModel oModel) {
 		if(oModel != null) {
@@ -76,4 +80,24 @@ public class TrabajadorTransform implements Transform<TrabajadorModel, RegTrabaj
 		return null;
 	}
 
+	/**
+	 * Formulario
+	 */
+	@Override
+	public TrabajadorModel transformFM(UsuarioTrabajadorForm oForm) {
+		if(oForm != null) {
+			TrabajadorModel oModelTrabajador = new TrabajadorModel();
+			
+			oModelTrabajador.setsIdTipoDocumento(oForm.getsIdTipoDocumento());
+			oModelTrabajador.setsNumeroDocumento(oForm.getsNumeroDocumento());
+			oModelTrabajador.setsApellidoPaterno(oForm.getsApellidoPaterno());
+			oModelTrabajador.setsApellidoMaterno(oForm.getsApellidoMaterno());
+			oModelTrabajador.setsNombres(oForm.getsNombres());
+			oModelTrabajador.setsTipoTrabajador(oForm.getsTipoTrabajador());
+			
+			return oModelTrabajador;
+		}
+		return null;
+	}
+	
 }
